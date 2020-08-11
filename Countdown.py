@@ -1,9 +1,12 @@
 '''
+Script for finding solutions to Countdown "Numbers Game" problems
+
 To do
 - Not require use of all numbers
+- Keep only unique solutions up to commutation
 - Enforce "no non-integer steps" rule
 - Does this actually contain all the steps? what about combining different bracket sets?
-- Random card picking
+- Random small numbers picking
 '''
 
 import random
@@ -25,7 +28,10 @@ no_ops = no_nums - 1
 
 opperms = list(itertools.product(ops,repeat=no_ops))
 
-#we are going to generate the solutions as python code and use eval() to compute the result
+'''
+we are going to generate the trial solutions in postfix notation, and compute using rpn
+(and also convert to infix operators for ease of reading and use eval() to check the result)
+'''
 
 def infix(a,b,op):
     string  = '(' + b + ' ' + op + ' ' + a + ')'
