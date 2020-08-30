@@ -2,9 +2,9 @@ import random
 
 #generate a random number
 # bignumber = random.randint(1,999)
-bignumber = 950
+bignumber = 3
 print(bignumber)
-smallnumbers = [6,3,100,75,50,25]
+smallnumbers = [1,2,3,4,5,6]
 print(smallnumbers)
 
 ops = ['+','-','*','/']
@@ -15,8 +15,7 @@ def infix(a,b,op):
     return string
 
 def maketuple(a):
-    tuple = (a,str(a))
-    return tuple
+    return (a,str(a))
 
 def evaltup(atup,btup,op):
     # function on tuples (int value, str expression)
