@@ -7,6 +7,9 @@ To do
 - Enforce "no non-integer steps" rule
 - Does this actually contain all the steps? what about combining different bracket sets?
 - Random small numbers picking
+
+
+It is widely acknowledged that this is an AWFUL idea
 '''
 
 import random
@@ -26,7 +29,23 @@ no_nums = len(smallnumbers)
 no_ops = no_nums - 1
 #print(numperms)
 
-opperms = list(itertools.product(ops,repeat=no_ops))
+
+opperms = list(itertools.combinations_with_replacement(ops,r=no_ops))
+counter = 0
+trials = []
+for opperm in opperms:
+    for i in range(no_nums):
+        remainingnumbers = smallnumbers.copy()
+        firstnumber = remainingnumbers.pop(i)
+        endings = list(itertools.permutations(list(remainingnumbers)+list(opperm)))
+        for ending in endings:
+            trial = list(firstnumber) + list(ending)
+            trials = trials + trial
+            #print(trial)
+            counter = counter + 1
+            print(counter)
+
+
 
 '''
 we are going to generate the trial solutions in postfix notation, and compute using rpn
