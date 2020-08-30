@@ -2,9 +2,9 @@ import random
 
 #generate a random number
 # bignumber = random.randint(1,999)
-bignumber = 3
+bignumber = 234
 print(bignumber)
-smallnumbers = [1,2,3,4,5,6]
+smallnumbers = [1,10,2,3,32,2]
 print(smallnumbers)
 
 ops = ['+','-','*','/']
@@ -13,9 +13,6 @@ def infix(a,b,op):
     # strings returns string
     string  = '(' + a + ' ' + op + ' ' + b + ')'
     return string
-
-def maketuple(a):
-    return (a,str(a))
 
 def evaltup(atup,btup,op):
     # function on tuples (int value, str expression)
@@ -49,16 +46,14 @@ def solve(nums):
         if len(remainingnums) > 0:
             for remnum in remainingnums:
                 for op in ops:
-                    if num[0] > remnum[0] and (op != '/' or num[0]%remnum[0] == 0):
+                    if num[0] >= remnum[0] and (op != '/' or (remnum[0] != 0 and num[0]%remnum[0] == 0)):
                         remainingnums2 = remainingnums.copy()
                         remainingnums2.remove(remnum)
                         newnums = [evaltup(num,remnum,op)] + remainingnums2
                         # print(newnums)
                         solve(newnums)
 
-nums = []
-for num in smallnumbers:
-    nums = nums + [maketuple(num)]
+nums = [(a,str(a)) for a in smallnumbers]
 # print(nums)
 
 solve(nums)
